@@ -7,7 +7,7 @@ public class Lap {
     private Date duration;
     private Date time;
     private float averageSpeed;
-    private Pilot pilot;
+    //private Pilot pilot;
     private Race race;
 
     protected Lap(Date time, int number, Date duration, float averageSpeed){
@@ -41,6 +41,7 @@ public class Lap {
         this.averageSpeed = averageSpeed;
     }
 
+    /*
     public Pilot getPilot() {
         return pilot;
     }
@@ -48,6 +49,7 @@ public class Lap {
     public void setPilot(Pilot pilot) {
         this.pilot = pilot;
     }
+    */
 
     public Race getRace() {
         return race;

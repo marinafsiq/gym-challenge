@@ -28,6 +28,11 @@ public class StringConverter {
         return null;
     }
 
+    public static float convertToAverageSpeed(String string){
+        string = string.replace(',','.');
+        return Float.parseFloat(string);
+    }
+
 
 
 

@@ -16,6 +16,7 @@ public class LogSerializer {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
 
             String line;
+            bufferedReader.readLine();
             while ((line = bufferedReader.readLine()) != null) {
                 String[] splittedLine = line.split("[–\\s\\t]+");
                 splittedLines.add(splittedLine);

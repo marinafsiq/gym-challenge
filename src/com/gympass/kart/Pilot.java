@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Pilot {
     private int code;
     private String name;
-    private ArrayList<Race> races;
-    private ArrayList<Lap> laps;
+    //private ArrayList<Race> races;
+    private ArrayList<Lap> laps = new ArrayList<Lap>();
 
     public Pilot(int code, String name) {
         this.code = code;
@@ -29,6 +29,7 @@ public class Pilot {
         this.name = name;
     }
 
+    /*
     public ArrayList<Race> getRaces() {
         return races;
     }
@@ -36,6 +37,7 @@ public class Pilot {
     public void setRaces(ArrayList<Race> races) {
         this.races = races;
     }
+    */
 
     public ArrayList<Lap> getLaps() {
         return laps;
@@ -43,5 +45,9 @@ public class Pilot {
 
     public void setLaps(ArrayList<Lap> laps) {
         this.laps = laps;
+    }
+
+    public void addLap(Lap lap){
+        laps.add(lap);
     }
 }

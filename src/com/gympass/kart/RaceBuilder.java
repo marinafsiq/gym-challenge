@@ -18,16 +18,20 @@ public class RaceBuilder {
         ArrayList<String[]> lines = LogSerializer.getLinesSplitted(logPath);
 
         for (String[] line : lines) {
-            
+
             Lap lap = new Lap(StringConverter.convertToTime(line[0]),
                     Integer.parseInt(line[3]),
                     StringConverter.convertToDuration(line[4]),
-                    Float.parseFloat(line[5])
+                    StringConverter.convertToAverageSpeed(line[5])
                     );
-            Pilot pilot = new Pilot(Integer.parseInt(line[1]), line[2]);
-
             race.addLap(lap);
-            race.addPilot(pilot);
+
+            Pilot pilot = race.getPilotById(Integer.parseInt(line[1]));
+            if(pilot == null){
+                pilot = new Pilot(Integer.parseInt(line[1]), line[2]);
+                race.addPilot(pilot);
+            }
+            pilot.addLap(lap);
 
         }
         return race;
