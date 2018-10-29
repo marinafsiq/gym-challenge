@@ -11,11 +11,11 @@ class PilotTest {
 
     @Test
     void getLastLap() {
-        RaceBuilder raceBuilder = new RaceBuilder("src/resources/kart-run-wrong-lap-numbers.log");
+        RaceBuilder raceBuilder = new RaceBuilder("src/resources/kart-run-wrong-lap-numbers.txt");
         Race race = raceBuilder.buildRace(4);
         Lap lap = race.getPilotById(38).getLastLap();
 
-        RaceBuilder raceBuilderResult = new RaceBuilder("src/resources/kart-run-wrong-lap-numbers-result.log");
+        RaceBuilder raceBuilderResult = new RaceBuilder("src/resources/kart-run-wrong-lap-numbers-result.txt");
         Race raceResult = raceBuilderResult.buildRace(4);
         Lap lapResult = raceResult.getPilotById(38).getLastLap();
 
@@ -29,7 +29,7 @@ class PilotTest {
 
     @Test
     void buildRaceNumberOfPilots() {
-        RaceBuilder builder = new RaceBuilder("src/resources/kart-run.log");
+        RaceBuilder builder = new RaceBuilder("src/resources/kart-run.txt");
 
         Race race = builder.buildRace(4);
 
@@ -38,7 +38,7 @@ class PilotTest {
 
     @Test
     void buildRaceNumberOfPilotsWIthWrongPilot() {
-        RaceBuilder builder = new RaceBuilder("src/resources/kart-run-wrong-pilot.log");
+        RaceBuilder builder = new RaceBuilder("src/resources/kart-run-wrong-pilot.txt");
 
         Race race = builder.buildRace(4);
 

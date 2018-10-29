@@ -8,7 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        RaceBuilder raceBuilder = new RaceBuilder("src/resources/kart-run.log");
+        RaceBuilder raceBuilder = new RaceBuilder("src/resources/kart-run.txt");
         Race race = raceBuilder.buildRace(4);
 
         PrintHelper.result(race.getResult());

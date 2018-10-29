@@ -17,14 +17,14 @@ class RaceBuilderTest {
 
     @Test
     void buildRaceEmptyFile() {
-        RaceBuilder race = new RaceBuilder("src/resources/kart-run-empty.log");
+        RaceBuilder race = new RaceBuilder("src/resources/kart-run-empty.txt");
 
         assertNull(race.buildRace(4));
     }
 
     @Test
     void buildRaceSpaceBetweenLogLines() {
-        RaceBuilder race = new RaceBuilder("src/resources/kart-run-space.log");
+        RaceBuilder race = new RaceBuilder("src/resources/kart-run-space.txt");
 
         assertNotNull(race.buildRace(4));
     }

@@ -13,10 +13,10 @@ class RaceTest {
 
     @Test
     void getResultRaceNoEnd(){
-        RaceBuilder raceBuilder = new RaceBuilder("src/resources/kart-run.log");
-        Race race = raceBuilder.buildRace(4);
+        RaceBuilder raceBuilder = new RaceBuilder("src/resources/kart-run.txt");
+        Race race = raceBuilder.buildRace(5);
         //testing if pilots finished the race (completed the minimum number of laps)
-        assertEquals(race.getPilotById(38).getLastLap(), null);
+        assertEquals(null, race.getResult());
     }
 
 }
