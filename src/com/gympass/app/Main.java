@@ -1,5 +1,6 @@
 package com.gympass.app;
 
+import com.gympass.helper.PrintHelper;
 import com.gympass.kart.Race;
 import com.gympass.kart.RaceBuilder;
 
@@ -9,15 +10,20 @@ public class Main {
 	// write your code here
         RaceBuilder raceBuilder = new RaceBuilder("/Users/Marina/Downloads/kart-run.log");
         Race race = raceBuilder.buildRace();
-        race.getResult();
+
+        PrintHelper.result(race.getResult());
         System.out.println();
-        race.findBestLapInRace();
+
+        PrintHelper.bestLap(race.findBestLapInRace());
         System.out.println();
-        race.bestLapOfEachPilot();
+
+        PrintHelper.bestLapOfEachPilot(race.bestLapOfEachPilot());
         System.out.println();
-        race.calculatePilotsAverageSpeed();
+
+        PrintHelper.averageSpeed(race.calculatePilotsAverageSpeed());
         System.out.println();
-        race.timeAfterWinner();
+
+        PrintHelper.timeAfterWinner(race.timeAfterWinner());
 
 
         System.out.println();

@@ -2,12 +2,10 @@ package com.gympass.kart;
 
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Pilot {
     private int code;
     private String name;
-    //private ArrayList<Race> races;
     private ArrayList<Lap> laps = new ArrayList<Lap>();
 
     public Pilot(int code, String name) {
@@ -31,16 +29,6 @@ public class Pilot {
         this.name = name;
     }
 
-    /*
-    public ArrayList<Race> getRaces() {
-        return races;
-    }
-
-    public void setRaces(ArrayList<Race> races) {
-        this.races = races;
-    }
-    */
-
     public ArrayList<Lap> getLaps() {
         return laps;
     }
@@ -60,8 +48,9 @@ public class Pilot {
     public Lap getLastLap(){
         int counter = laps.size();
         for (int i=counter-1; i>=0; i--) {
-            if(laps.get(i).getNumber() == counter)
-                return laps.get(i);
+            Lap lap = laps.get(i);
+            if(lap.getNumber() == counter)
+                return lap;
         }
         return null;
     }

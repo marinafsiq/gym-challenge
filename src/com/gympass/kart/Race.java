@@ -1,12 +1,10 @@
 package com.gympass.kart;
 
+import com.gympass.helper.PrintHelper;
 import com.gympass.helper.StringConverter;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Race {
     private String name;
@@ -86,23 +84,6 @@ public class Race {
     public ArrayList<Pilot> getResult(){
         ArrayList<Pilot> result = (ArrayList<Pilot>)pilots.clone();
         result.sort(byLapsAndTime);
-        int counter = 1;
-
-
-        System.out.println("Position | Pilot Code |   Pilot Name   | Completed Laps | Race Total Time");
-        //                   "   1          038       R.BARRICHELLO           4            11:04.414   "
-        for (Pilot pilot : result) {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(String.format("%4d",counter++));
-            stringBuilder.append(String.format("%13d",pilot.getCode()));
-            stringBuilder.append(String.format("%20s",pilot.getName()));
-            stringBuilder.append(String.format("%12d", pilot.getNumberOfLaps()));
-            stringBuilder.append(String.format("%21s", StringConverter.convertDurationToString(pilot.getRaceTotalTime())));//21
-
-            System.out.println(stringBuilder.toString());
-
-        }
-
         return result;
     }
 
@@ -122,46 +103,24 @@ public class Race {
                 bestLap = lap;
             }
         }
-
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("\nBest Lap");
-        stringBuilder.append("\nNumber: ");
-        stringBuilder.append(bestLap.getNumber());
-        stringBuilder.append("\nTime: ");
-        stringBuilder.append(StringConverter.convertTimeToString(bestLap.getTime()));
-        stringBuilder.append("\nDuration: ");
-        stringBuilder.append(String.format("%s", StringConverter.convertDurationToString(bestLap.getDuration())));
-        stringBuilder.append("\nAverage Speed: ");
-        stringBuilder.append(bestLap.getAverageSpeed());
-
-        System.out.println(stringBuilder.toString());
         return bestLap;
     }
 
-
-
-
-
     //Descobrir a melhor volta de cada piloto
-    public ArrayList<Lap> bestLapOfEachPilot(){
-        ArrayList<Lap> laps = new ArrayList<Lap>();
+    public HashMap<String, Lap> bestLapOfEachPilot(){
+        HashMap<String, Lap> laps = new HashMap<String, Lap>();
         for (Pilot pilot : pilots) {
-            System.out.println(pilot.getCode() + " - " + pilot.getName());
-            laps.add(findBestLapInSet(pilot.getLaps()));
+            laps.put(pilot.getName(), findBestLapInSet(pilot.getLaps()));
         }
         return laps;
     }
 
     //Calcular a velocidade média de cada piloto durante toda corrida
-    public ArrayList<Float> calculatePilotsAverageSpeed(){
-        ArrayList<Float> averageSpeed = new ArrayList<>();
+    public HashMap<String, Float> calculatePilotsAverageSpeed(){
+        HashMap<String, Float> averageSpeed = new HashMap<String, Float>();
         for (Pilot pilot : pilots) {
             float avgSpeed = calculatePilotAverageSpeed(pilot);
-            averageSpeed.add(avgSpeed);
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("Pilot: ").append(pilot.getCode()).append("-").append(pilot.getName())
-                    .append(" \tAverage Speed: ").append(avgSpeed);
-            System.out.println(stringBuilder.toString());
+            averageSpeed.put(pilot.getName(), avgSpeed);
         }
         return averageSpeed;
     }
@@ -175,18 +134,17 @@ public class Race {
     }
 
     //Descobrir quanto tempo cada piloto chegou após o vencedor
-    public ArrayList<Long> timeAfterWinner(){
+    public HashMap<String, Long> timeAfterWinner(){
         Pilot winner = getResult().get(0);
-        ArrayList<Long> differences = new ArrayList<Long>();
+        Lap winnerLap = winner.getLastLap();
+        Date winnerTime = winnerLap.getTime();
+        HashMap<String, Long> differences = new HashMap<String, Long>();
         long difference = 0;
         for (Pilot pilot : pilots) {
-            difference = pilot.getLastLap().getTime().getTime() - winner.getLastLap().getTime().getTime();
-            differences.add(difference);
-
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append("Pilot: ").append(pilot.getCode()).append("-").append(pilot.getName())
-                    .append(" \tTime Difference from winner: ").append(StringConverter.convertDurationToString(difference));
-            System.out.println(stringBuilder);
+            Lap lap = pilot.getLastLap();
+            Date time = lap.getTime();
+            difference = time.getTime() - winnerTime.getTime();
+            differences.put(pilot.getName(), difference);
         }
         return differences;
     }

@@ -1,9 +1,6 @@
 package com.gympass.helper;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 
 public class LogSerializer {
@@ -21,8 +18,8 @@ public class LogSerializer {
                 String[] splittedLine = line.split("[–\\s\\t]+");
                 splittedLines.add(splittedLine);
             }
-        }catch (Exception e){
-            e.printStackTrace();
+        }catch (IOException e){
+            System.out.println("Your file may be corrupted. Please, check it!");
         }
 
         return splittedLines;
