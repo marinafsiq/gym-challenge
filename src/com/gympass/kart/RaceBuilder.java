@@ -13,9 +13,17 @@ public class RaceBuilder {
         this.logPath = logPath;
     }
 
-    public Race buildRace(){
+    public Race buildRace(int numberOfLaps){
         race = new Race();
+        if(logPath.isEmpty() || logPath==null){
+            return null;
+        }
+
+        race.setNumberOfLaps(numberOfLaps);
         ArrayList<String[]> lines = LogSerializer.getLinesSplitted(logPath);
+
+        if(lines.size() < 1)
+            return null;
 
         for (String[] line : lines) {
 

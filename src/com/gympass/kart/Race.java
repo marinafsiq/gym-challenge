@@ -10,6 +10,7 @@ public class Race {
     private String name;
     private Date date;
     private String place;
+    private int numberOfLaps;
     private ArrayList<Lap> laps = new ArrayList<Lap>();
     private ArrayList<Pilot> pilots = new ArrayList<Pilot>();
 
@@ -39,6 +40,15 @@ public class Race {
 
     public void setPlace(String place) {
         this.place = place;
+    }
+
+
+    public int getNumberOfLaps() {
+        return numberOfLaps;
+    }
+
+    public void setNumberOfLaps(int numberOfLaps) {
+        this.numberOfLaps = numberOfLaps;
     }
 
     public ArrayList<Lap> getLaps() {
@@ -84,6 +94,10 @@ public class Race {
     public ArrayList<Pilot> getResult(){
         ArrayList<Pilot> result = (ArrayList<Pilot>)pilots.clone();
         result.sort(byLapsAndTime);
+        if(result.get(0).getLaps().size()<numberOfLaps){
+            System.out.println("No pilot was able to finish the race. So, there is no winner.");
+            return null;
+        }
         return result;
     }
 
