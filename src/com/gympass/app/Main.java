@@ -9,6 +9,15 @@ public class Main {
 	// write your code here
         RaceBuilder raceBuilder = new RaceBuilder("/Users/Marina/Downloads/kart-run.log");
         Race race = raceBuilder.buildRace();
+        race.getResult();
+        System.out.println();
+        race.findBestLapInRace();
+        System.out.println();
+        race.bestLapOfEachPilot();
+        System.out.println();
+        race.calculatePilotsAverageSpeed();
+        System.out.println();
+        race.timeAfterWinner();
 
 
         System.out.println();

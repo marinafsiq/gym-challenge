@@ -1,6 +1,8 @@
 package com.gympass.kart;
 
+import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Pilot {
     private int code;
@@ -50,4 +52,26 @@ public class Pilot {
     public void addLap(Lap lap){
         laps.add(lap);
     }
+
+    public int getNumberOfLaps(){
+        return laps.size();
+    }
+
+    public Lap getLastLap(){
+        int counter = laps.size();
+        for (int i=counter-1; i>=0; i--) {
+            if(laps.get(i).getNumber() == counter)
+                return laps.get(i);
+        }
+        return null;
+    }
+
+    public Duration getRaceTotalTime(){
+        Duration totalTime = Duration.ofMinutes(0);
+        for (Lap lap : laps) {
+            totalTime = totalTime.plus(lap.getDuration());
+        }
+        return totalTime;
+    }
+
 }

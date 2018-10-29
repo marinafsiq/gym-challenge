@@ -1,27 +1,28 @@
 package com.gympass.kart;
 
+import java.time.Duration;
 import java.util.Date;
 
 public class Lap {
     private int number;
-    private Date duration;
+    private Duration duration;
     private Date time;
     private float averageSpeed;
     //private Pilot pilot;
     private Race race;
 
-    protected Lap(Date time, int number, Date duration, float averageSpeed){
+    protected Lap(Date time, int number, Duration duration, float averageSpeed){
         this.time = time;
         this.number = number;
         this.duration = duration;
         this.averageSpeed = averageSpeed;
     }
 
-    public Date getDuration() {
+    public Duration getDuration() {
         return duration;
     }
 
-    public void setDuration(Date duration) {
+    public void setDuration(Duration duration) {
         this.duration = duration;
     }
 
